@@ -19,6 +19,7 @@
                         <h1> Table Users</h1>
                         <a type="button" href="user/create" class="h-25 btn btn-outline-primary">Create User</a>
                     </div>
+                    <hr />
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -39,9 +40,9 @@
                                     <td>${user.address}</td>
                                     <td>${user.phone}</td>
                                     <td>
-                                        <a href="admin/user/edit/${user.id}" class="btn btn-outline-success">View</a>
-                                        <a href="admin/user/edit/${user.id}" class="btn btn-outline-warning">Edit</a>
-                                        <a href="admin/user/delete/${user.id}" class="btn btn-outline-danger">Delete</a>
+                                        <a href="user/${user.id}" class="btn btn-outline-success">View</a>
+                                        <a href="user/update/${user.id}" class="btn btn-outline-warning">Edit</a>
+                                        <a href="user/delete/${user.id}" class="btn btn-outline-danger">Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>

@@ -18,14 +18,18 @@
 
             <body>
                 <div class="container mt-3">
-                    <h1>Create a user</h1>
+                    <h1>Update user</h1>
                     <hr />
                     <div class="row">
                         <div class="col-md-6 col-12 mx-auto">
-                            <form:form method="post" action="/admin/user/create" modelAttribute="newUser">
+                            <form:form method="post" action="/admin/user/update" modelAttribute="newUser">
+                                <div class="mb-3" style="display: none;">
+                                    <label class="form-label">ID: </label>
+                                    <form:input type="text" class="form-control" path="id" readonly="true" />
+                                </div>
                                 <div class="mb-3">
                                     <label class="form-label">Email </label>
-                                    <form:input type="email" class="form-control" path="email" />
+                                    <form:input type="email" class="form-control" path="email" readonly="true" />
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Password</label>
@@ -45,7 +49,7 @@
                                     <form:input type="text" class="form-control" path="phone" />
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-warning">Submit</button>
                                 </div>
                             </form:form>
                         </div>
