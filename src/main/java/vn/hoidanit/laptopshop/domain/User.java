@@ -4,8 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 
 @Entity
+@Table(name="users")
 public class User {
 
     @Id
@@ -21,6 +27,14 @@ public class User {
     private String avatar;
 
     // roleId
+    @ManyToOne
+    @JoinColumn(name="role_id")
+    private Role role;
+    
+    @OneToMany(mappedBy="user")
+    private List<Order> orders;
+
+
     public long getId() {
         return id;
     }
