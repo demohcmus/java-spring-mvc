@@ -37,4 +37,9 @@ public class UserService {
         System.out.println(ngo);
         return ngo;
     }
+
+    public void deleteUser(long id)
+    {
+        this.userRepository.deleteById(id);
+    }
 }
