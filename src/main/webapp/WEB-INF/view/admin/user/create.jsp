@@ -73,9 +73,12 @@
                                                         <form:option value="USER">USER</form:option>
                                                     </form:select>
                                                 </div>
+                                                <div class="mb-3 col-12 col-md-6">
+                                                    <label class="form-label">Avatar:</label>
+                                                    <input class="form-control" type="file" id="avatarFile"
+                                                        accept=".png, .jpg, .jpeg" name="hoidanitFile" />
+                                                </div>
 
-                                                <input class="form-control" type="file" id="avatarFile"
-                                                    accept=".png, .jpg, .jpeg" name="hoidanitFile" />
                                                 <div class=" col-12 mb-3">
                                                     <img style="max-height: 250px; display: none;" alt="avatar preview"
                                                         id="avatarPreview" />
