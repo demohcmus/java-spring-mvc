@@ -5,22 +5,36 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
+    @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
+
+    @NotNull
+    @Size(min = 2, message = "Password phải có tối thiểu 2 kí tự")
     private String password;
+
+    @NotNull
+    @Size(min = 2, message = "Fullname phải có tối thiểu 2 kí tự")
     private String fullName;
+
     private String address;
     private String phone;
 
@@ -28,12 +42,11 @@ public class User {
 
     // roleId
     @ManyToOne
-    @JoinColumn(name="role_id")
+    @JoinColumn(name = "role_id")
     private Role role;
-    
-    @OneToMany(mappedBy="user")
-    private List<Order> orders;
 
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
     public Role getRole() {
         return role;
@@ -112,7 +125,5 @@ public class User {
         return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName
                 + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
     }
-
-   
 
 }
