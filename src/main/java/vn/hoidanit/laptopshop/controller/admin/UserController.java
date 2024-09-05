@@ -47,11 +47,7 @@ public class UserController {
         return "admin/user/show";
     }
 
-    @RequestMapping("/admin/user/{id}")
-    public String getDetailUser(@PathVariable long id, Model model) {
-        model.addAttribute("user_data", this.userService.getUserById(id));
-        return "admin/user/detail";
-    }
+
 
     @RequestMapping("/admin/user/create")
     public String getCreateUserPage(Model model) {
@@ -80,6 +76,12 @@ public class UserController {
         hoidanit.setRole(this.userService.getRoleByName(hoidanit.getRole().getName()));
         this.userService.handleSaveUser(hoidanit);
         return "redirect:/admin/user";
+    }
+
+    @RequestMapping("/admin/user/{id}")
+    public String getDetailUser(@PathVariable long id, Model model) {
+        model.addAttribute("user_data", this.userService.getUserById(id));
+        return "admin/user/detail";
     }
 
     @RequestMapping("/admin/user/update/{id}")

@@ -33,7 +33,7 @@
                                     <hr />
                                     <div class="row">
                                         <div class="alert alert-danger" role="alert">
-                                            Are your sure you want to delete the user?
+                                            Are your sure you want to delete this user?
                                         </div>
                                     </div>
                                     <form:form method="post" action="/admin/user/delete" modelAttribute="newUser">

@@ -11,7 +11,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
                 <meta name="author" content="Hỏi Dân IT" />
-                <title>Delete A User - Hỏi Dân IT</title>
+                <title>Delete A Product - Hỏi Dân IT</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -23,20 +23,20 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage Users</h1>
+                                <h1 class="mt-4">Manage Products</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Users</li>
+                                    <li class="breadcrumb-item active">Products</li>
                                 </ol>
                                 <div class="mt-3">
-                                    <h1>Delete the user with id = ${id}</h1>
+                                    <h1>Delete the product with id = ${id}</h1>
                                     <hr />
                                     <div class="row">
                                         <div class="alert alert-danger" role="alert">
-                                            Are your sure you want to delete the user?
+                                            Are your sure you want to delete this product?
                                         </div>
                                     </div>
-                                    <form:form method="post" action="/admin/user/delete" modelAttribute="newUser">
+                                    <form:form method="post" action="/admin/product/delete" modelAttribute="newProduct">
                                         <div class="mb-3" style="display: none;">
                                             <label class="form-label">ID: </label>
                                             <form:input value="${id}" type="text" class="form-control" path="id" />

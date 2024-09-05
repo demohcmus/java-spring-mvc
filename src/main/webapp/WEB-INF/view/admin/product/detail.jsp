@@ -11,7 +11,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
                 <meta name="author" content="Hỏi Dân IT" />
-                <title>Detail Of The User - Hỏi Dân IT</title>
+                <title>Detail Of The Product - Hỏi Dân IT</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -23,22 +23,27 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage Users</h1>
+                                <h1 class="mt-4">Manage Products</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Users</li>
+                                    <li class="breadcrumb-item active">Products</li>
                                 </ol>
                                 <div class="mt-3">
-                                    <h1>User detail</h1>
+                                    <h1>Product detail</h1>
                                     <hr />
                                     <div class="card" style="width: 18rem;">
-                                        <img src="https://yt3.googleusercontent.com/8eGqQZxpSdVKFel6OBsW5orqJ1mC_2h_sPKbR4al6eqOM2rV-2ahi6FhEWT-L9PmWjgfhsJhSeY=s900-c-k-c0x00ffffff-no-rj"
-                                            class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${user_data.fullName}</h5>
-                                            <p class="card-text">${user_data.address}</p>
-                                            <a href="/admin/user" class="btn btn-primary">Back</a>
+                                        <div class="card-header">
+                                            Featured
                                         </div>
+                                        <ul class="list-group list-group-flush">
+                                            <img src="/images/product/${product_data.image}" class="card-img-top"
+                                                alt="...">
+                                            <li class="list-group-item">ID: ${product_data.id}</li>
+                                            <li class="list-group-item">Product's Name: ${product_data.name}</li>
+                                            <li class="list-group-item">Detail: ${product_data.detailDesc}</li>
+                                            <li class="list-group-item">Quantity: ${product_data.quantity}</li>
+                                            <a href="/admin/product" class="btn btn-primary">Back</a>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

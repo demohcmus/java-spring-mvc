@@ -32,14 +32,20 @@
                                     <h1>User detail</h1>
                                     <hr />
                                     <div class="card" style="width: 18rem;">
-                                        <img src="https://yt3.googleusercontent.com/8eGqQZxpSdVKFel6OBsW5orqJ1mC_2h_sPKbR4al6eqOM2rV-2ahi6FhEWT-L9PmWjgfhsJhSeY=s900-c-k-c0x00ffffff-no-rj"
-                                            class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${user_data.fullName}</h5>
-                                            <p class="card-text">${user_data.address}</p>
-                                            <a href="/admin/user" class="btn btn-primary">Back</a>
+                                        <div class="card-header">
+                                            Featured
                                         </div>
+                                        <ul class="list-group list-group-flush">
+                                            <img src="https://yt3.googleusercontent.com/8eGqQZxpSdVKFel6OBsW5orqJ1mC_2h_sPKbR4al6eqOM2rV-2ahi6FhEWT-L9PmWjgfhsJhSeY=s900-c-k-c0x00ffffff-no-rj"
+                                                class="card-img-top" alt="...">
+                                                <li class="list-group-item">ID: ${user_data.id}</li>
+                                            <li class="list-group-item">Full name: ${user_data.fullName}</li>
+                                            <li class="list-group-item">Phone: ${user_data.phone}</li>
+                                            <li class="list-group-item">Address: ${user_data.address}</li>
+                                            <a href="/admin/user" class="btn btn-primary">Back</a>
+                                        </ul>
                                     </div>
+
                                 </div>
                             </div>
                         </main>
