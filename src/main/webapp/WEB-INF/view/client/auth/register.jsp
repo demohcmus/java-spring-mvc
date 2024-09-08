@@ -39,8 +39,8 @@
                                                         <form:errors path="email" cssClass="invalid-feedback" />
                                                     </c:set>
 
-                                                    <c:set var="errorFirstName"></c:set>
-                                                    <form:errors path="firstName" cssClass="invalid-feedback" />
+                                                    <c:set var="errorFirstName">
+                                                        <form:errors path="firstName" cssClass="invalid-feedback" />
                                                     </c:set>
 
                                                     <div class="row mb-3">
