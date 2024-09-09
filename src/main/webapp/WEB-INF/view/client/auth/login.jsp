@@ -33,8 +33,8 @@
                                                         <div class="my-2" style="color:red;">Invalid email or password
                                                         </div>
                                                     </c:if>
-                                                    <c:if test="${param.logout != null}"></c:if>
-                                                    <div class="my-2" style="color:green;">Logout success.</div>
+                                                    <c:if test="${param.logout != null}">
+                                                        <div class="my-2" style="color:green;">Logout success.</div>
                                                     </c:if>
 
                                                     <div class="form-floating mb-3">
