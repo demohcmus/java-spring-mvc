@@ -22,7 +22,7 @@ import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.UserService;
 
 public class CustomSuccessHandler implements AuthenticationSuccessHandler {
-    
+
     @Autowired
     private UserService userService;
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
@@ -50,19 +50,19 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
             return;
         }
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
-        
+
         // get email
         String email = authentication.getName();
         // get user
         User user = this.userService.getUserByEmail(email);
-        if(user!= null){
+        if (user != null) {
             session.setAttribute("fullName", user.getFullName());
             session.setAttribute("avatar", user.getAvatar());
             session.setAttribute("id", user.getId());
             session.setAttribute("email", user.getEmail());
-            int sum = user.getCart().getSum();
+            int sum = user.getCart() == null ? 0 : user.getCart().getSum();
             session.setAttribute("sum", sum);
-            
+
         }
     }
 
