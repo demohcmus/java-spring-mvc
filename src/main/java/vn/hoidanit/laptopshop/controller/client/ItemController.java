@@ -54,7 +54,7 @@ public class ItemController {
         long id = (long) session.getAttribute("id");
         currentUser.setId(id);
         Cart cart = this.productService.fetchByUser(currentUser);
-        List<CartDetail> cartDetails = cart == null? new ArrayList<CartDetail>() : cart.getCartDetails();
+        List<CartDetail> cartDetails = cart == null ? new ArrayList<CartDetail>() : cart.getCartDetails();
         double totalPrice = 0;
         for (CartDetail cd : cartDetails) {
             totalPrice += cd.getPrice() * cd.getQuantity();
@@ -63,6 +63,14 @@ public class ItemController {
         model.addAttribute("totalPrice", totalPrice);
 
         return "client/cart/show";
+    }
+
+    @PostMapping("/delete-cart-product/{id}")
+    public String deleteProductInCart(@PathVariable long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        long cartDetailId = id;
+        this.productService.deleteProductInCart(cartDetailId, session);
+        return "redirect:/cart";
     }
 
 }
