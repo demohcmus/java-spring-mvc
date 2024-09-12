@@ -3,6 +3,8 @@ package vn.hoidanit.laptopshop.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import vn.hoidanit.laptopshop.domain.Order;
@@ -50,8 +52,8 @@ public class ProductService {
         return this.productRepository.save(product);
     }
 
-    public List<Product> fetchProducts() {
-        return this.productRepository.findAll();
+    public Page<Product> fetchProducts(Pageable page) {
+        return this.productRepository.findAll(page);
     }
 
     public Optional<Product> fetchProductById(long id) {
@@ -164,7 +166,7 @@ public class ProductService {
                 order.setStatus("PENDING");
 
                 double sum = 0;
-                for(CartDetail cd: cartDetails){
+                for (CartDetail cd : cartDetails) {
                     sum += cd.getPrice();
                 }
                 order.setTotalPrice(sum);

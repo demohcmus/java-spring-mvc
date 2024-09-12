@@ -63,7 +63,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE)
                         .permitAll()
-                        .requestMatchers("/", "/login", "product/**",
+                        .requestMatchers("/", "/login", "product/**", "/register",
                                 "/client/**", "/css/**", "/js/**", "/images/**")
                         .permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -71,8 +71,9 @@ public class SecurityConfiguration {
                 .sessionManagement((sessionManagement) -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                         .invalidSessionUrl("/logout?expired")
-                        .maximumSessions(1)  // Giới hạn session cho mỗi tài khoản
-                        .maxSessionsPreventsLogin(false)) // Cho phép đăng nhập nếu đã có người khác đăng nhập (bị đá ra)
+                        .maximumSessions(1) // Giới hạn session cho mỗi tài khoản
+                        .maxSessionsPreventsLogin(false)) // Cho phép đăng nhập nếu đã có người khác đăng nhập (bị đá
+                                                          // ra)
 
                 // .logout(logout->logout.deleteCookies("JSESSIONID").invalidateHttpSession(true))
 
