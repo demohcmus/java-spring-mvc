@@ -36,9 +36,9 @@
                                             Featured
                                         </div>
                                         <ul class="list-group list-group-flush">
-                                            <img src="https://yt3.googleusercontent.com/8eGqQZxpSdVKFel6OBsW5orqJ1mC_2h_sPKbR4al6eqOM2rV-2ahi6FhEWT-L9PmWjgfhsJhSeY=s900-c-k-c0x00ffffff-no-rj"
-                                                class="card-img-top" alt="...">
-                                                <li class="list-group-item">ID: ${user_data.id}</li>
+                                            <img src="/images/avatar/${user_data.avatar}" class="card-img-top"
+                                                alt="...">
+                                            <li class="list-group-item">ID: ${user_data.id}</li>
                                             <li class="list-group-item">Full name: ${user_data.fullName}</li>
                                             <li class="list-group-item">Phone: ${user_data.phone}</li>
                                             <li class="list-group-item">Address: ${user_data.address}</li>

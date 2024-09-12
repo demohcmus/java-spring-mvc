@@ -26,6 +26,8 @@ public class Order {
 
     private String receiverPhone;
 
+    private String status;
+
     // userId
     @ManyToOne
     @JoinColumn(name="user_id")
@@ -49,7 +51,6 @@ public class Order {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
 
     public String getReceiverName() {
         return receiverName;
@@ -75,6 +76,14 @@ public class Order {
         this.receiverPhone = receiverPhone;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public User getUser() {
         return user;
     }
@@ -93,8 +102,12 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order [id=" + id + ", totalPrice=" + totalPrice + "]";
+        return "Order [id=" + id + ", totalPrice=" + totalPrice + ", receiverName=" + receiverName
+                + ", receiverAddress=" + receiverAddress + ", receiverPhone=" + receiverPhone + ", status=" + status
+                + ", user=" + user + ", orderDetails=" + orderDetails + "]";
     }
+
+    
 
 
     
