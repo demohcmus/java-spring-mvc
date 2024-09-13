@@ -123,18 +123,18 @@ public class ItemController {
     }
 
     @PostMapping("/add-product-from-view-detail")
-public String handleAddProductFromViewDetail(
-        @RequestParam(value = "id", required = true) Long id,
-        @RequestParam(value = "quantity", defaultValue = "1") long quantity,
-        HttpServletRequest request) {
-    HttpSession session = request.getSession(false);
+    public String handleAddProductFromViewDetail(
+            @RequestParam(value = "id", required = true) Long id,
+            @RequestParam(value = "quantity", defaultValue = "1") long quantity,
+            HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
 
-    String email = (String) session.getAttribute("email");
-    this.productService.handleAddProductToCart(email, id, session, quantity);
-    return "redirect:/product/" + id;
-}
+        String email = (String) session.getAttribute("email");
+        this.productService.handleAddProductToCart(email, id, session, quantity);
+        return "redirect:/product/" + id;
+    }
 
- @GetMapping("/products")
+    @GetMapping("/products")
     public String getProductsPage(Model model,
             @RequestParam("page") Optional<String> pageOptional,
             @RequestParam("name") Optional<String> nameOptional) {
@@ -150,16 +150,17 @@ public String handleAddProductFromViewDetail(
             // handle exception
         }
 
-        String name = nameOptional.get();
         Pageable pageable = PageRequest.of(page - 1, 5);
-        Page<Product> prs = this.productService.fetchProducts(pageable, name);
+        String name = nameOptional.isPresent() ? nameOptional.get() : "";
+
+        Page<Product> prs = this.productService.fetchProductsWithSpec(pageable, name);
         List<Product> listProducts = prs.getContent();
         int totalPages = prs.getTotalPages();
-        
+
         model.addAttribute("products", listProducts);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
-        
+
         return "client/product/show";
     }
 }
