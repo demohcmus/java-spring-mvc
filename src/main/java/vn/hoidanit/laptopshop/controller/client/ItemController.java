@@ -136,7 +136,8 @@ public String handleAddProductFromViewDetail(
 
  @GetMapping("/products")
     public String getProductsPage(Model model,
-            @RequestParam("page") Optional<String> pageOptional) {
+            @RequestParam("page") Optional<String> pageOptional,
+            @RequestParam("name") Optional<String> nameOptional) {
         int page = 1;
         try {
             if (pageOptional.isPresent()) {
@@ -149,8 +150,9 @@ public String handleAddProductFromViewDetail(
             // handle exception
         }
 
+        String name = nameOptional.get();
         Pageable pageable = PageRequest.of(page - 1, 5);
-        Page<Product> prs = this.productService.fetchProducts(pageable);
+        Page<Product> prs = this.productService.fetchProducts(pageable, name);
         List<Product> listProducts = prs.getContent();
         int totalPages = prs.getTotalPages();
         
