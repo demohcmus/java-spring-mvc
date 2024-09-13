@@ -28,18 +28,18 @@ public class OrderController {
 
     @GetMapping("/admin/order")
     public String getDashboard(Model model,
-          @RequestParam("page") Optional<String> pageOptional){
-            int page=1;
-            try{
-                if(pageOptional.isPresent()){
-                    page= Integer.parseInt(pageOptional.get());
-                } else{
-                    // page =1
-                }
-            } catch(Exception e){
-                // handle exception
+            @RequestParam("page") Optional<String> pageOptional) {
+        int page = 1;
+        try {
+            if (pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
+            } else {
+                // page =1
             }
-        Pageable pageable = PageRequest.of(page - 1, 1);
+        } catch (Exception e) {
+            // handle exception
+        }
+        Pageable pageable = PageRequest.of(page - 1, 3);
         Page<Order> ordersPage = this.orderService.fetchAllOrders(pageable);
         List<Order> orders = ordersPage.getContent();
 

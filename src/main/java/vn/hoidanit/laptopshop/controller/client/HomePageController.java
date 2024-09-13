@@ -1,6 +1,7 @@
 package vn.hoidanit.laptopshop.controller.client;
 
 import java.util.List;
+import java.util.Optional;
 
 import vn.hoidanit.laptopshop.domain.User;
 
@@ -52,10 +53,10 @@ public class HomePageController {
 
     @GetMapping("/")
     public String getHomePage(Model model) {
-        //List<Product> products = this.productService.fetchProducts();
-        Pageable pageable = PageRequest.of(0,10);
-        Page<Product> prs= this.productService.fetchProducts(pageable);
-        List<Product> products= prs.getContent();
+        // List<Product> products = this.productService.fetchProducts();
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<Product> prs = this.productService.fetchProducts(pageable);
+        List<Product> products = prs.getContent();
         model.addAttribute("products", products);
         return "client/homepage/show";
     }
