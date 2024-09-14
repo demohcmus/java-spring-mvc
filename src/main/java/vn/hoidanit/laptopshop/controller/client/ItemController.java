@@ -1,6 +1,7 @@
 package vn.hoidanit.laptopshop.controller.client;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -137,7 +138,11 @@ public class ItemController {
     @GetMapping("/products")
     public String getProductsPage(Model model,
             @RequestParam("page") Optional<String> pageOptional,
-            @RequestParam("name") Optional<String> nameOptional) {
+            @RequestParam("name") Optional<String> nameOptional,
+            @RequestParam("factory") Optional<String> factoryOptional,
+            @RequestParam("target") Optional<String> targetOptional,
+            @RequestParam("price") Optional<String> priceOptional,
+            @RequestParam("sort") Optional<String> sortOptional) {
         int page = 1;
         try {
             if (pageOptional.isPresent()) {
@@ -150,10 +155,29 @@ public class ItemController {
             // handle exception
         }
 
-        Pageable pageable = PageRequest.of(page - 1, 5);
-        String name = nameOptional.isPresent() ? nameOptional.get() : "";
+        Pageable pageable = PageRequest.of(page - 1, 60);
+        // String name = nameOptional.isPresent() ? nameOptional.get() : "";
+        // Page<Product> prs = this.productService.fetchProductsWithSpec(pageable,
+        // name);
 
-        Page<Product> prs = this.productService.fetchProductsWithSpec(pageable, name);
+        // case 1
+        double min = minOptional.isPresent() ? Double.parseDouble(minOptional.get()) : 0;
+
+        // case 2
+        // double max = maxOptional.isPresent() ? Double.parseDouble(maxOptional.get())
+        // :0;
+
+        // case 3
+        // String factory = factoryOptional.isPresent() ? factoryOptional.get() : "";
+
+        // case 4
+        //List<String> factories = Arrays.asList(factoryOptional.get().split(","));
+
+        // case 5
+        String price = priceOptional.isPresent() ? priceOptional.get() : "";
+        
+        Page<Product> prs = this.productService.fetchProductsWithSpec(pageable, price);
+
         List<Product> listProducts = prs.getContent();
         int totalPages = prs.getTotalPages();
 
