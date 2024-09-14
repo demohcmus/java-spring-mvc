@@ -17,6 +17,7 @@ import vn.hoidanit.laptopshop.domain.Cart;
 import vn.hoidanit.laptopshop.domain.CartDetail;
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.domain.dto.ProductCriteriaDTO;
 import vn.hoidanit.laptopshop.service.ProductService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -136,17 +137,11 @@ public class ItemController {
     }
 
     @GetMapping("/products")
-    public String getProductsPage(Model model,
-            @RequestParam("page") Optional<String> pageOptional,
-            @RequestParam("name") Optional<String> nameOptional,
-            @RequestParam("factory") Optional<String> factoryOptional,
-            @RequestParam("target") Optional<String> targetOptional,
-            @RequestParam("price") Optional<String> priceOptional,
-            @RequestParam("sort") Optional<String> sortOptional) {
+    public String getProductsPage(Model model, ProductCriteriaDTO productCriteriaDTO) {
         int page = 1;
         try {
-            if (pageOptional.isPresent()) {
-                page = Integer.parseInt(pageOptional.get());
+            if (productCriteriaDTO.getPage().isPresent()) {
+                page = Integer.parseInt(productCriteriaDTO.getPage().get());
             } else {
                 // page =1
             }
@@ -156,12 +151,15 @@ public class ItemController {
         }
 
         Pageable pageable = PageRequest.of(page - 1, 60);
+        Page<Product> prs = this.productService.fetchProductsWithSpec(pageable, productCriteriaDTO);
+
         // String name = nameOptional.isPresent() ? nameOptional.get() : "";
         // Page<Product> prs = this.productService.fetchProductsWithSpec(pageable,
         // name);
 
         // case 1
-        double min = minOptional.isPresent() ? Double.parseDouble(minOptional.get()) : 0;
+        // double min = minOptional.isPresent() ? Double.parseDouble(minOptional.get())
+        // : 0;
 
         // case 2
         // double max = maxOptional.isPresent() ? Double.parseDouble(maxOptional.get())
@@ -171,14 +169,14 @@ public class ItemController {
         // String factory = factoryOptional.isPresent() ? factoryOptional.get() : "";
 
         // case 4
-        //List<String> factories = Arrays.asList(factoryOptional.get().split(","));
+        // List<String> factories = Arrays.asList(factoryOptional.get().split(","));
 
         // case 5
-        String price = priceOptional.isPresent() ? priceOptional.get() : "";
-        
-        Page<Product> prs = this.productService.fetchProductsWithSpec(pageable, price);
+        // String price = priceOptional.isPresent() ? priceOptional.get() : "";
+        // Page<Product> prs = this.productService.fetchProductsWithSpec(pageable,
+        // price);
 
-        List<Product> listProducts = prs.getContent();
+        List<Product> listProducts = prs.getContent().size() > 0 ? prs.getContent() : new ArrayList<Product>();
         int totalPages = prs.getTotalPages();
 
         model.addAttribute("products", listProducts);
